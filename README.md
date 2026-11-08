@@ -1,7 +1,7 @@
 # NightCare – Night-Shift Adaptive Interface
 
 ## About the Project
-NightCare is an adaptive interface designed for hospital and factory night-shift workers. It helps users manage their tasks, monitor fatigue, take breaks, and adjust screen settings for comfortable night-time use.
+NightCare is an adaptive interface designed for hospital and factory night-shift workers. It helps users manage tasks, monitor fatigue, take breaks, and adjust screen settings for comfortable night-time use.
 
 ## Features
 - Login page
@@ -20,7 +20,7 @@ NightCare is an adaptive interface designed for hospital and factory night-shift
 - Figma
 
 ## Project Screens
-The `figma-designs` folder contains the five UI designs:
+The `figma-designs` folder contains five UI designs:
 1. Login
 2. Dashboard
 3. My Tasks
