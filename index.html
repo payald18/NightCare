@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NightCare - Night Shift Companion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- LOGIN SCREEN -->
+    <section id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <div class="login-logo">
+                <span class="moon">☾</span>
+                <span>NightCare</span>
+            </div>
+            <p class="tagline">Your night shift companion</p>
+
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Sign in to your NightCare account</p>
+
+            <form id="loginForm">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <div class="forgot">Forgot Password?</div>
+                <button class="primary-btn" type="submit">Login</button>
+            </form>
+
+            <p class="signup">Don't have an account? <a href="#" id="signupLink">Sign Up</a></p>
+        </div>
+        <footer>© 2026 NightCare. All rights reserved.</footer>
+    </section>
+
+    <!-- MAIN APPLICATION -->
+    <div id="app" class="app hidden">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">☾</span>
+                <span>NightCare</span>
+            </div>
+
+            <nav>
+                <a href="#" class="nav-link active" data-page="dashboard">▦ <span>Dashboard</span></a>
+                <a href="#" class="nav-link" data-page="tasks">☷ <span>My Tasks</span></a>
+                <a href="#" class="nav-link" data-page="alerts">♧ <span>Alerts</span></a>
+                <a href="#" class="nav-link" data-page="fatigue">♡ <span>Fatigue Support</span></a>
+                <a href="#" class="nav-link" data-page="settings">⚙ <span>Adaptive Settings</span></a>
+            </nav>
+
+            <button class="logout-btn" id="logoutBtn">↪ Logout</button>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="page active-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Good Evening!</h1>
+                        <p>Welcome back. Here's your shift overview.</p>
+                    </div>
+                    <span class="date-label" id="currentDate"></span>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="card stat-card">
+                        <span>Shift Hours</span>
+                        <h2>8 Hours</h2>
+                        <small>10:00 PM – 6:00 AM</small>
+                    </div>
+                    <div class="card stat-card">
+                        <span>Pending Tasks</span>
+                        <h2 id="pendingStat">2</h2>
+                        <small>Tasks remaining</small>
+                    </div>
+                    <div class="card stat-card">
+                        <span>Active Alerts</span>
+                        <h2>3</h2>
+                        <small>Needs attention</small>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h2>Shift Overview</h2>
+                        <p class="muted">Your shift progress</p>
+                        <div class="progress-info">
+                            <span>Energy Level</span><strong>80%</strong>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-fill green" style="width:80%"></div>
+                        </div>
+                        <div class="timeline">
+                            <div><span>10:00 PM</span>
+                                <p>Shift Started</p>
+                            </div>
+                            <div><span>1:00 AM</span>
+                                <p>Mid-shift Break</p>
+                            </div>
+                            <div><span>3:00 AM</span>
+                                <p>Monitoring</p>
+                            </div>
+                            <div><span>5:30 AM</span>
+                                <p>Handover Preparation</p>
+                            </div>
+                            <div><span>6:00 AM</span>
+                                <p>Shift Ends</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>Upcoming Tasks</h2>
+                        <div id="upcomingTasks">
+                            <div class="task-row"><span>Check patient records</span><small>10:00 PM</small></div>
+                            <div class="task-row"><span>Equipment inspection</span><small>12:00 AM</small></div>
+                            <div class="task-row"><span>Monitor patient vitals</span><small>2:00 AM</small></div>
+                            <div class="task-row"><span>Check system alerts</span><small>3:30 AM</small></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>Wellbeing</h2>
+                        <p class="muted">How is your energy level?</p>
+                        <h1 class="green-text">80%</h1>
+                        <p>You're doing well! Keep taking care of yourself.</p>
+                        <button class="secondary-btn" data-go="fatigue">Check Wellbeing</button>
+                    </div>
+
+                    <div class="card">
+                        <h2>Break Reminder</h2>
+                        <h1 class="orange-text">30 min</h1>
+                        <p>Time until your next scheduled break.</p>
+                        <button class="orange-btn" data-go="fatigue">Start Break</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MY TASKS -->
+            <section id="tasks" class="page">
+                <div class="page-header">
+                    <div>
+                        <h1>My Tasks</h1>
+                        <p>Manage and track your shift activities.</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid four">
+                    <div class="card stat-card"><span>Total Tasks</span>
+                        <h2 id="totalTasks">5</h2>
+                    </div>
+                    <div class="card stat-card"><span>Pending</span>
+                        <h2 class="orange-text" id="pendingTasks">2</h2>
+                    </div>
+                    <div class="card stat-card"><span>Completed</span>
+                        <h2 class="green-text" id="completedTasks">3</h2>
+                    </div>
+                    <div class="card stat-card"><span>Overdue</span>
+                        <h2 class="red-text" id="overdueTasks">1</h2>
+                    </div>
+                </div>
+
+                <div class="tasks-layout">
+                    <div class="card">
+                        <h2>Your Tasks</h2>
+                        <select id="taskFilter">
+                            <option value="all">All Tasks</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Overdue">Overdue</option>
+                        </select>
+                        <div id="taskList"></div>
+                    </div>
+
+                    <div class="right-stack">
+                        <div class="card">
+                            <h2>Add New Task</h2>
+                            <form id="taskForm">
+                                <label>Task Name</label>
+                                <input id="taskName" type="text" placeholder="Enter task name" required>
+                                <label>Date</label>
+                                <input id="taskDate" type="date" required>
+                                <label>Time</label>
+                                <input id="taskTime" type="time" required>
+                                <button class="primary-btn">+ Add Task</button>
+                            </form>
+                        </div>
+
+                        <div class="card">
+                            <h2>Task Progress</h2>
+                            <div class="progress-info"><span>Completed Tasks</span><strong id="taskPercent">60%</strong>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-fill green" id="taskProgressBar" style="width:60%"></div>
+                            </div>
+                            <p class="muted" id="taskProgressText">3 completed out of 5 tasks</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ALERTS -->
+            <section id="alerts" class="page">
+                <div class="page-header">
+                    <div>
+                        <h1>Alerts</h1>
+                        <p>Stay updated with important shift notifications.</p>
+                    </div>
+                </div>
+                <div class="card alert-card">
+                    <span class="alert-dot"></span>
+                    <div>
+                        <h3>Break Reminder</h3>
+                        <p>Your scheduled break is approaching.</p><small>Just now</small>
+                    </div>
+                </div>
+                <div class="card alert-card">
+                    <span class="alert-dot orange-dot"></span>
+                    <div>
+                        <h3>Pending Tasks</h3>
+                        <p>You have tasks waiting to be completed.</p><small>10 minutes ago</small>
+                    </div>
+                </div>
+                <div class="card alert-card">
+                    <span class="alert-dot red-dot"></span>
+                    <div>
+                        <h3>Fatigue Check</h3>
+                        <p>Remember to monitor your energy level.</p><small>30 minutes ago</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FATIGUE SUPPORT -->
+            <section id="fatigue" class="page">
+                <div class="page-header">
+                    <div>
+                        <h1>Fatigue Support</h1>
+                        <p>Take care of your wellbeing during your night shift.</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="card stat-card"><span>Energy Level</span>
+                        <h2 class="green-text">80%</h2><small>You're doing well!</small>
+                    </div>
+                    <div class="card stat-card"><span>Time Until Break</span>
+                        <h2 class="orange-text">30 min</h2><small>Your next break is approaching.</small>
+                    </div>
+                    <div class="card stat-card"><span>Alertness Level</span>
+                        <h2 class="green-text">Good</h2><small>Stay hydrated and focused.</small>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h2>Your Next Break</h2>
+                        <h1 class="orange-text">1:00 AM</h1>
+                        <p>Your scheduled mid-shift break. Take time to relax and recharge.</p>
+                        <button class="orange-btn" id="breakBtn">Start Break</button>
+                    </div>
+                    <div class="card">
+                        <h2>Fatigue Management Tips</h2>
+                        <div class="tip">✓ Stay hydrated</div>
+                        <div class="tip">✓ Stretch every hour</div>
+                        <div class="tip">✓ Rest your eyes regularly</div>
+                    </div>
+                    <div class="card wellbeing-card">
+                        <h2>How are you feeling?</h2>
+                        <p class="muted">Take a moment to check in with yourself.</p>
+                        <div class="feeling-buttons">
+                            <button class="feeling good" data-feeling="Feeling Good">😊 Feeling Good</button>
+                            <button class="feeling tired" data-feeling="Feeling Tired">😐 Feeling Tired</button>
+                            <button class="feeling rest" data-feeling="Need Rest">😴 Need Rest</button>
+                        </div>
+                        <p id="feelingMessage" class="muted"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ADAPTIVE SETTINGS -->
+            <section id="settings" class="page">
+                <div class="page-header">
+                    <div>
+                        <h1>Adaptive Settings</h1>
+                        <p>Customize your interface for a comfortable night shift.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Choose Your Theme</h2>
+                    <p class="muted">Select the display mode that feels comfortable.</p>
+                    <div class="theme-grid">
+                        <button class="theme-option light-theme" data-theme="light">
+                            <span class="theme-preview light-preview"></span>
+                            <strong>Light Mode</strong><small>Bright background</small>
+                        </button>
+                        <button class="theme-option dim-theme" data-theme="dim">
+                            <span class="theme-preview dim-preview"></span>
+                            <strong>Dim Mode</strong><small>Soft lighting</small>
+                        </button>
+                        <button class="theme-option dark-theme selected" data-theme="dark">
+                            <span class="theme-preview dark-preview"></span>
+                            <strong>Dark Mode</strong><small>Night-friendly</small>
+                        </button>
+                        <button class="theme-option contrast-theme" data-theme="contrast">
+                            <span class="theme-preview contrast-preview"></span>
+                            <strong>High Contrast</strong><small>Maximum readability</small>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="card">
+                        <h2>Brightness Control</h2>
+                        <div class="range-heading"><span>Adjust Brightness</span><strong
+                                id="brightnessValue">70%</strong></div>
+                        <input type="range" id="brightness" min="30" max="100" value="70">
+                        <p class="muted">Adjust screen brightness for comfortable viewing.</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>Text Size</h2>
+                        <div class="range-heading"><span>A <span class="large-a">A</span></span><strong
+                                id="textSizeValue">16px</strong></div>
+                        <input type="range" id="textSize" min="14" max="22" value="16">
+                        <p class="muted">Change text size for better readability.</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>Automatic Theme Switching</h2>
+                        <p class="muted">Automatically switch to Dark Mode during your night shift.</p>
+                        <label class="switch">
+                            <input type="checkbox" id="autoTheme">
+                            <span class="slider"></span>
+                        </label>
+                        <p class="schedule">10:00 PM – 6:00 AM</p>
+                        <small class="muted" id="autoStatus">Automatic switching is off.</small>
+                    </div>
+
+                    <div class="card designed-card">
+                        <h2>Designed for Night Shifts</h2>
+                        <p>NightCare adapts to your environment to support comfort and wellbeing.</p>
+                        <div class="feature">◉ Reduced Eye Strain</div>
+                        <div class="feature">◉ Better Readability</div>
+                        <div class="feature">◉ Fatigue Awareness</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
